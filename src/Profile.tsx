@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { GoogleLogin, GoogleLoginResponse, GoogleLoginResponseOffline, GoogleLogout } from 'react-google-login'
-import Code from './Code'
 
 type ProfileProps = {
     clientId: string
@@ -15,7 +14,7 @@ type UserProfile = {
     familyName: string
 }
 
-const Profile = ({ clientId }: ProfileProps) => {
+const Profile : React.FC<ProfileProps> = props => {
     const [profile, setProfile] = useState<UserProfile | undefined>(undefined)
     //const [error, setError] = useState<any|undefined>(undefined)
 
@@ -38,7 +37,7 @@ const Profile = ({ clientId }: ProfileProps) => {
     return profile === undefined
         ?
         <GoogleLogin
-            clientId="487484697431-82alkmmibo5lia2hlj8viet04tgbubom.apps.googleusercontent.com"
+            clientId={props.clientId}
             buttonText="Logg inn"
             isSignedIn={true}
             onSuccess={successfulResponse}
@@ -46,14 +45,14 @@ const Profile = ({ clientId }: ProfileProps) => {
         />
         :
         <div>
-            <p><img src={profile.imageUrl} /></p>
+            <p><img src={profile.imageUrl} alt="Profile" /></p>
             <p>Velkommen, {profile.name} </p>
             <GoogleLogout
-                clientId="487484697431-82alkmmibo5lia2hlj8viet04tgbubom.apps.googleusercontent.com"
+                clientId={props.clientId}
                 buttonText="Logg ut"
                 onLogoutSuccess={logout}
             />
-            <Code/>
+            {props.children}
         </div>
 }
 
