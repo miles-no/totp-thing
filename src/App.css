@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@700&display=swap');
+
 .App {
   text-align: center;
 }
@@ -26,6 +28,11 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.Code {
+  font-family: 'Space Mono';
+  font-size: 150%;
 }
 
 @keyframes App-logo-spin {
