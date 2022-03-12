@@ -6,7 +6,7 @@ type CodeProps = {
 }
 
 const Code: React.FC<CodeProps> = props => {
-    const [token, setToken] = useState<number>(0)
+    const [token, setToken] = useState<number>(getToken(props.privateKey))
 
     useEffect(() => {
         const interval = setInterval(() => {
